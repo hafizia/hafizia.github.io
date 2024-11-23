@@ -2,7 +2,7 @@
 title: "Atmospheric extinction coefficients and night sky brightness at ITB-Undana remote telescope site"
 collection: publications
 category: conferences
-permalink: /publication/SB-kupang
+permalink: /publication/SB-undana
 excerpt: 'This paper is about sky brightness measurement project in 2023 at Universitas Nusa Cendana (Undana) using 20-cm (f/10) ITB-Undana Telescope system.'
 date: 2024-06-01
 venue: 'Journal of Physics: Conference Series'
