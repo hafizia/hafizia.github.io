@@ -7,7 +7,7 @@ excerpt: 'This paper is about sky brightness monitoring project in 2023 at Bossc
 date: 2024-06-01
 venue: 'Journal of Physics: Conference Series'
 paperurl: 'https://iopscience.iop.org/article/10.1088/1742-6596/2773/1/012003/pdf'
-citation: 'Yusuf, M., Arwinata, H. I., Perhati, T., Satya, L., Jatmiko, A. T. P., Ramadhan, D. G., ... & Ramadhan, S. (2024). Atmospheric extinction coefficients and night sky brightness at Bosscha Observatory. In <i>Journal of Physics: Conference Series<i> (Vol. 2773, No. 1, p. 012003). IOP Publishing.'
+citation: 'Yusuf, M., Arwinata, H. I., Perhati, T., Satya, L., Jatmiko, A. T. P., Ramadhan, D. G., ... & Ramadhan, S. (2024). Atmospheric extinction coefficients and night sky brightness at Bosscha Observatory. In <i>Journal of Physics: Conference Series</i> (Vol. 2773, No. 1, p. 012003). IOP Publishing.'
 ---
 
 
