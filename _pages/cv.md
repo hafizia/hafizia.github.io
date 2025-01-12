@@ -11,8 +11,8 @@ redirect_from:
 
 Education
 ======
-* M.S. in Astronomy, Institut Teknologi Bandung, 2026 (expected)
-* B.S. in Astronomy, Institut Teknologi Bandung, 2024
+* M.Sc. in Astronomy, Institut Teknologi Bandung, 2026 (expected)
+* B.Sc. in Astronomy, Institut Teknologi Bandung, 2024
 
 Work experience
 ======
