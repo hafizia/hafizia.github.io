@@ -703,8 +703,7 @@
 
   <!-- brief intro -->
   <div class="home-intro">
-    <img class="home-avatar" id="homeAvatar" src="" alt="Hafiz Indra Arwinata"
-         onerror="this.style.display='none';document.getElementById('homeAvatarFb').style.display='flex';">
+    <img class="home-avatar" id="homeAvatar" alt="Hafiz Indra Arwinata">
     <div class="home-avatar-fb" id="homeAvatarFb"><i class="fa-solid fa-user-astronaut"></i></div>
     <div class="home-intro-text">
       <h1 id="homeName"></h1>
@@ -762,8 +761,7 @@
     <!-- photo + bio (compact top row) -->
     <div class="about-layout" style="margin-bottom:2.5rem;">
       <div class="about-photo-wrap">
-        <img id="aboutPhoto" src="" alt="Hafiz Indra Arwinata"
-             onerror="this.style.display='none';document.getElementById('aboutPhotoFb').style.display='flex';">
+        <img id="aboutPhoto" alt="Hafiz Indra Arwinata">
         <div class="about-photo-fb" id="aboutPhotoFb"><i class="fa-solid fa-user-astronaut"></i></div>
       </div>
       <div class="about-info">
@@ -1124,7 +1122,10 @@ const CONTACT = [
    ╚═══════════════════════════════════════════════════════════════╝ */
 
 /* ── Tab switching ─────────────────────────────────────────── */
-function switchTab(name) {
+const VALID_TABS = ['home', 'research', 'talks', 'experience', 'about'];
+
+function switchTab(name, updateHash = true) {
+  if (!VALID_TABS.includes(name)) name = 'home';
   document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   const pane = document.getElementById('tab-' + name);
@@ -1132,6 +1133,8 @@ function switchTab(name) {
   if (pane) pane.classList.add('active');
   if (btn)  btn.classList.add('active');
   closeMenu();   // collapse the mobile dropdown after choosing
+  // remember the open tab in the URL so a refresh stays on this tab
+  if (updateHash) history.replaceState(null, '', name === 'home' ? location.pathname : '#' + name);
   window.scrollTo({ top: 0, behavior: 'instant' });
 }
 
@@ -1150,6 +1153,12 @@ navToggle.addEventListener('click', () => {
   const open = tabBar.classList.toggle('open');
   navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
 });
+
+/* ── Restore the active tab from the URL on load (survives refresh) ── */
+(() => {
+  const fromHash = location.hash.replace('#', '');
+  if (VALID_TABS.includes(fromHash) && fromHash !== 'home') switchTab(fromHash, false);
+})();
 
 /* ── BibTeX parser ─────────────────────────────────────────── */
 function parseBibtex(raw) {
@@ -1280,12 +1289,26 @@ function appendLinks(container, links) {
   });
 }
 
+/* ── Robust avatar loading ──────────────────────────────────────
+   Attach load/error handlers BEFORE setting src, so the photo shows
+   on success and the fallback icon only appears on a genuine failure.
+   (Previously an empty src="" fired onerror on first load and hid the
+   photo until a refresh.)                                          */
+function loadAvatar(img, fb, src, position) {
+  if (position) img.style.objectPosition = position;
+  img.onload  = () => { img.style.display = '';     fb.style.display = 'none'; };
+  img.onerror = () => { img.style.display = 'none'; fb.style.display = 'flex'; };
+  img.src = src;
+}
+
 /* ── HOME: intro ───────────────────────────────────────────── */
 document.getElementById('homeName').textContent  = ABOUT.name;
 document.getElementById('homeTitle').textContent = ABOUT.title;
-const homeAvatar = document.getElementById('homeAvatar');
-homeAvatar.src = ABOUT.avatar;
-homeAvatar.style.objectPosition = ABOUT.homeAvatarPosition;
+loadAvatar(
+  document.getElementById('homeAvatar'),
+  document.getElementById('homeAvatarFb'),
+  ABOUT.avatar, ABOUT.homeAvatarPosition
+);
 appendLinks(document.getElementById('homeLinks'), ABOUT.links);
 
 /* ── HOME: news (grouped by year) ──────────────────────────── */
@@ -1462,9 +1485,11 @@ EXPERIENCE.forEach(e => {
 document.getElementById('aboutName').textContent  = ABOUT.name;
 document.getElementById('aboutTitle').textContent = ABOUT.title;
 document.getElementById('aboutBio').textContent   = ABOUT.bio;
-const aboutPhoto = document.getElementById('aboutPhoto');
-aboutPhoto.src = ABOUT.avatar;
-aboutPhoto.style.objectPosition = ABOUT.avatarPosition;
+loadAvatar(
+  document.getElementById('aboutPhoto'),
+  document.getElementById('aboutPhotoFb'),
+  ABOUT.avatar, ABOUT.avatarPosition
+);
 appendLinks(document.getElementById('aboutLinks'), ABOUT.links);
 
 ABOUT.education.forEach(e => {
