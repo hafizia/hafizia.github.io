@@ -746,18 +746,23 @@
 const AUTHOR_LAST_NAME = "Arwinata";
 
 /* ── ABOUT ──────────────────────────────────────────────────────
-   avatarPosition: atur posisi foto agar wajah terlihat pas.
+   Posisi foto: atur agar wajah terlihat pas di dalam bingkai.
    Format: "X% Y%" atau keyword seperti "center top", "50% 20%"
    - Geser ke atas  → turunkan angka Y, misal "50% 10%"
    - Geser ke bawah → naikkan angka Y, misal "50% 70%"
    - Geser ke kiri  → turunkan angka X, misal "30% 20%"
-   - Geser ke kanan → naikkan angka X, misal "70% 20%"            */
+   - Geser ke kanan → naikkan angka X, misal "70% 20%"
+
+   Ada 2 foto dengan bingkai berbeda, jadi posisinya diatur terpisah:
+   - avatarPosition      → foto besar persegi di tab About
+   - homeAvatarPosition  → foto bulat kecil di tab Home           */
 const ABOUT = {
-  name:           "Hafiz Indra Arwinata",
-  title:          "Master Student in Astronomy · Institut Teknologi Bandung",
-  bio:            "Aspiring astrophysicist working on gravitational lensing and galaxies. I enjoy collaborating with scientists, participating in conferences, and exploring ideas at the boundary of observational astronomy. Outside of research, I like travelling, watching anime, and reading manga.",
-  avatar:         "images/foto diri.jpg",   // path ke foto
-  avatarPosition: "center 15%",            // ← sesuaikan posisi foto di sini
+  name:               "Hafiz Indra Arwinata",
+  title:              "Master Student in Astronomy · Institut Teknologi Bandung",
+  bio:                "Astronomy grad student | Gravitational lensing & dark matter | Happy to learn, connect, and collaborate!",
+  avatar:             "images/foto diri.jpeg",   // path ke foto
+  avatarPosition:     "center top",            // ← foto BESAR (tab About)
+  homeAvatarPosition: "center 20%",            // ← foto BULAT (tab Home)
 
   education: [
     {
@@ -787,6 +792,58 @@ const ABOUT = {
    image: path ke foto/gambar — tampil besar di card (opsional)
    url  : link langsung, atau "" kalau tidak ada                  */
 const NEWS = [
+  {
+    type:  "paper",
+    title: "New paper: Analysis of the Lens-redshift Probability Distribution Method on Constraining Cosmological Parameters",
+    date:  "May 2026",
+    url:   "https://doi.org/10.1088/1742-6596/3234/1/012016",
+  },
+  {
+    type:  "talk",
+    title: "Presented at APRIM 2026: Constraining Self-Interacting Dark Matter through Galaxy Group Mass Distributions",
+    date:  "May 2026",
+    url:   "",
+    image: "images/aprim2026.jpeg",
+  },
+  {
+    type:  "paper",
+    title: "New paper: Comparative Study of Activation Functions and Image Resolution on ResNet-34 for Spiral Galaxy Spin Classification",
+    date:  "December 2025",
+    url:   "https://doi.org/10.21009/SPEKTRA.103.03",
+  },
+  {
+    type:  "talk",
+    title: "Presented poster at EAMA 11: Analysis of the Lens-redshift Probability Distribution Method on Constraining Cosmological Parameters",
+    date:  "December 2025",
+    url:   "",
+    image: "images/eama11.jpeg",
+  },
+  {
+    type:  "talk",
+    title: "Presented at SEAAN 15: Analysis of the Lens-redshift Probability Distribution Method on Constraining Cosmological Parameters",
+    date:  "October 2025",
+    url:   "",
+    image: "images/seaan2025.jpeg",
+  },
+  {
+    type:  "talk",
+    title: "Presented at IPS 2025: Comparative Study of Activation Functions and Image Resolution on ResNet-34 for Spiral Galaxy Spin Classification",
+    date:  "June 2025",
+    url:   "",
+    image: "images/ips2025.jpeg",
+  },
+  {
+    type:  "paper",
+    title: "New paper: An analysis of astronomical alignments at Pugung Raharjo Archaeological Park",
+    date:  "June 2025",
+    url:   "https://doi.org/10.1063/5.0265333",
+  }, 
+  {
+    type:  "paper",
+    title: "New paper: Difference image analysis (DIA) techniques for variability detection in open cluster: A new approach to Bosscha observatory observational data",
+    date:  "June 2025",
+    url:   "https://doi.org/10.1063/5.0265330",
+  },
   {
     type:  "talk",
     title: "Presented at ICSSF 2024: Astronomical Alignments at Pugung Raharjo Archaeological Park",
@@ -818,6 +875,57 @@ const NEWS = [
    Paste BibTeX langsung dari Google Scholar / Zotero / Mendeley.
    Tambah paper terbaru di PALING ATAS.                           */
 const PUBLICATIONS = [
+{
+bibtex: `@inproceedings{arwinata2026analysis,
+  title={Analysis of the Lens-redshift Probability Distribution Method on Constraining Cosmological Parameters},
+  author={Arwinata, Hafiz Indra and Jaelani, Anton Timur},
+  booktitle={Journal of Physics: Conference Series},
+  volume={3234},
+  number={1},
+  pages={012016},
+  year={2026},
+  organization={IOP Publishing},
+  doi={10.1088/1742-6596/3234/1/012016}
+}`,
+},
+{
+bibtex: `@article{arwinata2025comparative,
+  title={Comparative Study of Activation Functions and Image Resolution on ResNet-34 for Spiral Galaxy Spin Classification},
+  author={Arwinata, Hafiz Indra and Kusuma, Sultan Hadi and Jaelani, Anton Timur},
+  journal={Spektra: Jurnal Fisika dan Aplikasinya},
+  volume={10},
+  number={3},
+  pages={177--190},
+  year={2025},
+  doi={10.21009/SPEKTRA.103.03}
+}`,
+},
+{
+bibtex: `@inproceedings{perhati2025difference,
+  title={Difference image analysis (DIA) techniques for variability detection in open cluster: A new approach to Bosscha observatory observational data},
+  author={Perhati, Teduh and Putra, Mahasena and Arwinata, Hafiz I and Anin, Chornelis JB},
+  booktitle={AIP Conference Proceedings},
+  volume={3309},
+  number={1},
+  pages={050004},
+  year={2025},
+  organization={AIP Publishing LLC},
+  doi = {10.1063/5.0265330} 
+}`,
+},
+{
+bibtex: `@inproceedings{arwinata2025analysis,
+  title={An analysis of astronomical alignments at Pugung Raharjo Archaeological Park},
+  author={Arwinata, Hafiz I and Perhati, Teduh},
+  booktitle={AIP Conference Proceedings},
+  volume={3309},
+  number={1},
+  pages={050005},
+  year={2025},
+  organization={AIP Publishing LLC},
+  doi = {10.1063/5.0265333}
+}`,
+},
   {
     bibtex: `@inproceedings{yusuf2024bosscha,
   author    = {Yusuf, Muhammad and Arwinata, Hafiz Indra and Perhati, Tubagus and Satya, Leksa and Jatmiko, Andreas Tri Prakoso and Ramadhan, Dicky Gregorius and Ramadhan, Shofia},
@@ -864,8 +972,44 @@ const PUBLICATIONS = [
    image: foto dari event — tampil sebagai thumbnail (opsional)   */
 const TALKS = [
   {
+    title:    "Constraining Self-Interacting Dark Matter through Galaxy Group Mass Distributions",
+    type:     "Conference Talk",
+    venue:    "2026 Asia-Pacific Regional IAU Meeting (APRIM 2026)",
+    location: "Hong Kong",
+    date:     "May 4 - 8, 2026",
+    url:      "",
+    image:    "images/aprim2026.jpeg",
+	},
+  {
+    title:    "Analysis of the Lens-redshift Probability Distribution Method on Constraining Cosmological Parameters",
+    type:     "Conference Poster",
+    venue:    "11th East-Asian Meeting on Astronomy (EAMA11)",
+    location: "Niigata, Japan",
+    date:     "December 8 - 12, 2025",
+    url:      "",
+    image:    "images/eama11.jpeg",
+	},
+  {
+    title:    "Analysis of the Lens-redshift Probability Distribution Method on Constraining Cosmological Parameters",
+    type:     "Conference Talk",
+    venue:    "15th Southeast Asia Astronomy Network (SEAAN) Meeting",
+    location: "Institut Teknologi Bandung (ITB), Bandung, Indonesia",
+    date:     "October 13 - 15, 2025",
+    url:      "",
+    image:    "images/seaan2025.jpeg",
+  },
+  {
+    title:    "Comparative Study of Activation Functions and Image Resolution on ResNet-34 for Spiral Galaxy Spin Classification",
+    type:     "Conference Talk",
+    venue:    "International Physics Seminar (IPS) 2025",
+    location: "Universitas Negeri Jakarta (UNJ), Jakarta, Indonesia",
+    date:     "June 21, 2025",
+    url:      "",
+    image:    "images/ips2025.jpeg",
+  },
+  {
     title:    "An Analysis of Astronomical Alignments at Pugung Raharjo Archaeological Park",
-    type:     "Conference Proceedings Talk",
+    type:     "Conference Talk",
     venue:    "1st International Conference on Sustainability in Sciences for the Future (ICSSF)",
     location: "Institut Teknologi Sumatera (ITERA), Lampung, Indonesia",
     date:     "September 26, 2024",
@@ -883,7 +1027,7 @@ const EXPERIENCE = [
     role:         "Course Assistant",
     organization: "Astronomy Study Program, ITB",
     description:  "Guided students in practical astronomical observations and telescope operation. Assisted with grading and provided academic support throughout the semester.",
-    supervisor:   "Anton Timur Jaelani & Yayan Sugianto",
+    supervisor:   "Anton Timur Jaelani, Mahasenaputra, and Yayan Sugianto",
   },
   {
     period:       "Jan 2023 – Dec 2024",
@@ -893,7 +1037,7 @@ const EXPERIENCE = [
     supervisor:   "Evan Irawan Akbar",
   },
   {
-    period:       "May 2023 – Nov 2024",
+    period:       "May 2023 – December 2025",
     role:         "Astronomy Educator",
     organization: "Bosscha Observatory, ITB",
     description:  "Educated the public about astronomy; guided visitors in observing celestial objects (Sun, stars, Moon) through telescopes.",
@@ -1069,7 +1213,9 @@ function appendLinks(container, links) {
 /* ── HOME: intro ───────────────────────────────────────────── */
 document.getElementById('homeName').textContent  = ABOUT.name;
 document.getElementById('homeTitle').textContent = ABOUT.title;
-document.getElementById('homeAvatar').src        = ABOUT.avatar;
+const homeAvatar = document.getElementById('homeAvatar');
+homeAvatar.src = ABOUT.avatar;
+homeAvatar.style.objectPosition = ABOUT.homeAvatarPosition;
 appendLinks(document.getElementById('homeLinks'), ABOUT.links);
 
 /* ── HOME: news (grouped by year) ──────────────────────────── */
