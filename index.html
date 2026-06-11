@@ -67,6 +67,23 @@
       cursor: pointer;
     }
 
+    /* hamburger button — hidden on desktop, shown on mobile */
+    .nav-toggle {
+      display: none;
+      margin-left: auto;
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--gray-200);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--blue-700);
+      font-size: 1rem;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+    }
+    .nav-toggle:hover { background: var(--blue-50); }
+
     /* ─── TAB BAR ──────────────────────────────────────────── */
     .tab-bar {
       display: flex;
@@ -100,7 +117,7 @@
     .tab-pane.active { display: block; }
 
     .page-wrap {
-      max-width: 860px;
+      max-width: 1080px;
       margin: 0 auto;
       padding: 3rem 2rem 4rem;
     }
@@ -134,7 +151,7 @@
       align-items: center;
       gap: 1.5rem;
       padding: 2rem 2rem 0;
-      max-width: 860px;
+      max-width: 1080px;
       margin: 0 auto;
     }
 
@@ -188,7 +205,7 @@
 
     /* news section on home */
     .home-news-wrap {
-      max-width: 860px;
+      max-width: 1080px;
       margin: 0 auto;
       padding: 2rem 2rem 4rem;
     }
@@ -379,6 +396,9 @@
       color: var(--gray-500);
       margin-top: 0.35rem;
       line-height: 1.55;
+      /* break long DOIs (e.g. AIP 10.1063/... with no hyphen) so they
+         don't overflow the card on narrow/mobile screens */
+      overflow-wrap: anywhere;
     }
     .citation-text strong { color: var(--gray-700); font-weight: 600; }
     .citation-text a.doi-link { color: var(--blue-500); text-decoration: none; }
@@ -572,7 +592,7 @@
     /* contact in about */
     .contact-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
       gap: 0.7rem;
       margin-top: 1rem;
     }
@@ -609,6 +629,41 @@
 
     /* ─── RESPONSIVE ───────────────────────────────────────── */
     @media (max-width: 600px) {
+      nav { padding: 0 1.25rem; gap: 0.75rem; }
+      .nav-toggle { display: flex; }
+
+      /* tab bar becomes a dropdown menu triggered by the hamburger */
+      .tab-bar {
+        position: absolute;
+        top: 58px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background: #fff;
+        border-bottom: 1px solid var(--gray-200);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.07);
+        overflow: hidden;
+        max-height: 0;                 /* collapsed by default */
+        transition: max-height 0.25s ease;
+      }
+      .tab-bar.open { max-height: 320px; }  /* expanded when toggled */
+
+      .tab-btn {
+        height: 48px;
+        width: 100%;
+        justify-content: flex-start;
+        text-align: left;
+        padding: 0 1.5rem;
+        font-size: 0.9rem;
+        border-bottom: 1px solid var(--gray-100);
+        border-left: 3px solid transparent;
+      }
+      .tab-btn.active {
+        border-bottom-color: var(--gray-100);
+        border-left-color: var(--blue-600);
+        background: var(--blue-50);
+      }
+
       .home-intro { padding: 1.5rem 1.25rem 0; gap: 1rem; }
       .home-news-wrap { padding: 1.5rem 1.25rem 3rem; }
       .news-card { flex-basis: calc(85% - 0.5rem); max-width: calc(85% - 0.5rem); }
@@ -619,7 +674,6 @@
       .talk-card-inner { flex-direction: column; }
       .talk-thumb { width: 100%; }
       .exp-left { min-width: 100px; }
-      .tab-btn { padding: 0 0.75rem; font-size: 0.8rem; }
     }
   </style>
 </head>
@@ -630,7 +684,10 @@
 ══════════════════════════════════════════════════════════ -->
 <nav>
   <span class="nav-name" onclick="switchTab('home')" role="button" tabindex="0">Hafiz Indra Arwinata</span>
-  <div class="tab-bar" role="tablist">
+  <button class="nav-toggle" id="navToggle" aria-label="Buka menu" aria-expanded="false">
+    <i class="fa-solid fa-bars"></i>
+  </button>
+  <div class="tab-bar" id="tabBar" role="tablist">
     <button class="tab-btn active" data-tab="home"       role="tab">Home</button>
     <button class="tab-btn"        data-tab="research"   role="tab">Research</button>
     <button class="tab-btn"        data-tab="talks"      role="tab">Talks</button>
@@ -760,7 +817,7 @@ const ABOUT = {
   name:               "Hafiz Indra Arwinata",
   title:              "Master Student in Astronomy · Institut Teknologi Bandung",
   bio:                "Astronomy grad student | Gravitational lensing & dark matter | Happy to learn, connect, and collaborate!",
-  avatar:             "images/foto diri.jpeg",   // path ke foto
+  avatar:             "images/foto-diri.jpeg",   // path ke foto
   avatarPosition:     "center top",            // ← foto BESAR (tab About)
   homeAvatarPosition: "center 20%",            // ← foto BULAT (tab Home)
 
@@ -1023,7 +1080,7 @@ const TALKS = [
    supervisor: opsional, bisa dihapus kalau tidak relevan         */
 const EXPERIENCE = [
   {
-    period:       "Jan – Dec 2024",
+    period:       "Jan 2024 – Dec 2025",
     role:         "Course Assistant",
     organization: "Astronomy Study Program, ITB",
     description:  "Guided students in practical astronomical observations and telescope operation. Assisted with grading and provided academic support throughout the semester.",
@@ -1074,11 +1131,24 @@ function switchTab(name) {
   const btn  = document.querySelector(`.tab-btn[data-tab="${name}"]`);
   if (pane) pane.classList.add('active');
   if (btn)  btn.classList.add('active');
+  closeMenu();   // collapse the mobile dropdown after choosing
   window.scrollTo({ top: 0, behavior: 'instant' });
 }
 
 document.querySelectorAll('.tab-btn').forEach(btn => {
   btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+});
+
+/* ── Mobile hamburger menu ─────────────────────────────────── */
+const navToggle = document.getElementById('navToggle');
+const tabBar    = document.getElementById('tabBar');
+function closeMenu() {
+  tabBar.classList.remove('open');
+  navToggle.setAttribute('aria-expanded', 'false');
+}
+navToggle.addEventListener('click', () => {
+  const open = tabBar.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
 });
 
 /* ── BibTeX parser ─────────────────────────────────────────── */
