@@ -1146,14 +1146,41 @@ years.forEach(yr => {
     const c = row.querySelector('.news-card');
     return c ? c.getBoundingClientRect().width + 16 : 300;
   }
-  prevBtn.addEventListener('click', () => row.scrollBy({ left: -cardStep(), behavior: 'smooth' }));
-  nextBtn.addEventListener('click', () => row.scrollBy({ left:  cardStep(), behavior: 'smooth' }));
+  // restart auto-slide after a manual button press so it doesn't jump immediately
+  prevBtn.addEventListener('click', () => { row.scrollBy({ left: -cardStep(), behavior: 'smooth' }); stopAuto(); startAuto(); });
+  nextBtn.addEventListener('click', () => { row.scrollBy({ left:  cardStep(), behavior: 'smooth' }); stopAuto(); startAuto(); });
 
   controls.appendChild(prevBtn);
   controls.appendChild(nextBtn);
   wrap.appendChild(controls);
 
+  // ── auto-slide ──────────────────────────────────────────────
+  // advances one card every few seconds; loops back to the start at the end.
+  // only runs when the row actually overflows (3+ cards in a year).
+  let autoTimer = null;
+  const AUTO_DELAY = 4000;   // ← ubah angka ini (milidetik) untuk kecepatan slide
+
+  function atEnd() {
+    return row.scrollLeft + row.clientWidth >= row.scrollWidth - 4;
+  }
+  function autoAdvance() {
+    if (atEnd()) row.scrollTo({ left: 0, behavior: 'smooth' });   // balik ke awal
+    else         row.scrollBy({ left: cardStep(), behavior: 'smooth' });
+  }
+  function startAuto() {
+    if (autoTimer || row.scrollWidth <= row.clientWidth + 4) return;
+    autoTimer = setInterval(autoAdvance, AUTO_DELAY);
+  }
+  function stopAuto() {
+    clearInterval(autoTimer);
+    autoTimer = null;
+  }
+  // pause while the user is hovering or dragging, resume afterwards
+  wrap.addEventListener('mouseenter', stopAuto);
+  wrap.addEventListener('mouseleave', startAuto);
+
   newsContainer.appendChild(wrap);
+  startAuto();   // start once it's in the DOM (so widths are measurable)
 });
 
 /* ── RESEARCH: publications ─────────────────────────────────── */
