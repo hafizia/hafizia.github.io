@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hafiz Indra Arwinata</title>
+  <meta name="description" content="Astrophysicist working on gravitational lensing and galaxies — Institut Teknologi Bandung">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue-50:  #eff6ff;
+      --blue-100: #dbeafe;
+      --blue-200: #bfdbfe;
+      --blue-300: #93c5fd;
+      --blue-400: #60a5fa;
+      --blue-500: #3b82f6;
+      --blue-600: #2563eb;
+      --blue-700: #1d4ed8;
+      --blue-800: #1e40af;
+      --gray-50:  #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-300: #d1d5db;
+      --gray-400: #9ca3af;
+      --gray-500: #6b7280;
+      --gray-600: #4b5563;
+      --gray-700: #374151;
+      --gray-800: #1f2937;
+      --gray-900: #111827;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #ffffff;
+      color: var(--gray-800);
+      line-height: 1.65;
+    }
+
+    /* ─── TOP NAV ──────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--gray-200);
+      height: 58px;
+      display: flex;
+      align-items: center;
+      padding: 0 2rem;
+      gap: 2rem;
+    }
+
+    .nav-name {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--blue-700);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    /* ─── TAB BAR ──────────────────────────────────────────── */
+    .tab-bar {
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+      flex: 1;
+    }
+    .tab-bar::-webkit-scrollbar { display: none; }
+
+    .tab-btn {
+      padding: 0 1.1rem;
+      height: 58px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--gray-500);
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+      transition: color 0.15s, border-color 0.15s;
+      flex-shrink: 0;
+    }
+    .tab-btn:hover  { color: var(--gray-800); }
+    .tab-btn.active { color: var(--blue-600); border-bottom-color: var(--blue-600); }
+
+    /* ─── TAB CONTENT ──────────────────────────────────────── */
+    .tab-pane { display: none; }
+    .tab-pane.active { display: block; }
+
+    .page-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 3rem 2rem 4rem;
+    }
+
+    /* ─── SECTION TITLE ────────────────────────────────────── */
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 1.5rem;
+    }
+    .section-title .ti { color: var(--blue-500); font-size: 0.95rem; }
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1.5px;
+      background: var(--blue-200);
+      margin-left: 0.5rem;
+    }
+
+    /* ════════════════════════════════════════════════════════
+       HOME TAB
+    ════════════════════════════════════════════════════════ */
+
+    /* brief intro strip */
+    .home-intro {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 2rem 2rem 0;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .home-avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2.5px solid var(--blue-200);
+      flex-shrink: 0;
+      box-shadow: 0 2px 10px rgba(37,99,235,0.12);
+    }
+
+    .home-avatar-fb {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: var(--blue-100);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.75rem;
+      color: var(--blue-400);
+    }
+
+    .home-intro-text h1 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      letter-spacing: -0.02em;
+    }
+    .home-title { font-size: 0.85rem; color: var(--blue-600); font-weight: 500; margin: 0.1rem 0 0.5rem; }
+
+    .social-links { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.28rem 0.65rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-decoration: none;
+      background: var(--blue-50);
+      color: var(--blue-700);
+      border: 1px solid var(--blue-200);
+      transition: all 0.15s;
+    }
+    .social-link:hover { background: var(--blue-600); color: #fff; border-color: var(--blue-600); }
+
+    /* news section on home */
+    .home-news-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 2rem 4rem;
+    }
+
+    /* year-row scroll carousel */
+    .year-row-wrap { position: relative; margin-top: 1rem; }
+
+    .year-row {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      cursor: grab;
+      padding-bottom: 0.25rem;
+    }
+    .year-row::-webkit-scrollbar { display: none; }
+    .year-row.dragging { cursor: grabbing; scroll-snap-type: none; }
+
+    .row-controls {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.4rem;
+      margin-top: 0.65rem;
+    }
+
+    .c-btn {
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      border: 1px solid var(--blue-200);
+      background: #fff;
+      color: var(--blue-600);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem;
+      transition: all 0.15s;
+    }
+    .c-btn:hover { background: var(--blue-600); color: #fff; border-color: var(--blue-600); }
+
+    .news-card {
+      /* 2 cards visible at a time on desktop; fixed basis so the
+         image cannot stretch the card to its natural width */
+      flex: 0 0 calc(50% - 0.5rem);
+      max-width: calc(50% - 0.5rem);
+      min-width: 0;
+      scroll-snap-align: start;
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid var(--gray-200);
+      overflow: hidden;
+      transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+      display: flex;
+      flex-direction: column;
+    }
+    .news-card.has-link { cursor: pointer; }
+    .news-card.has-link:hover {
+      border-color: var(--blue-300);
+      box-shadow: 0 4px 18px rgba(37,99,235,0.1);
+      transform: translateY(-2px);
+    }
+
+    /* 4:3 area so landscape conference photos show in full (no cropping) */
+    .news-img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      display: block;
+      flex-shrink: 0;
+    }
+
+    .news-img-placeholder {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      background: var(--blue-50);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--blue-200);
+      font-size: 3rem;
+    }
+
+    .news-body {
+      padding: 1rem 1.2rem 1.25rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .news-tag {
+      display: inline-block;
+      font-size: 0.63rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      padding: 0.18rem 0.5rem;
+      border-radius: 4px;
+      align-self: flex-start;
+    }
+    .news-tag.paper { background: #dbeafe; color: #1d4ed8; }
+    .news-tag.talk  { background: #d1fae5; color: #065f46; }
+    .news-tag.award { background: #fef3c7; color: #92400e; }
+    .news-tag.other { background: #f3e8ff; color: #6b21a8; }
+
+    .news-card h3 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--gray-800);
+      line-height: 1.45;
+    }
+    .news-card.has-link:hover h3 { color: var(--blue-700); }
+
+    .news-date { font-size: 0.73rem; color: var(--gray-400); margin-top: auto; padding-top: 0.25rem; }
+
+    /* year separator in news */
+    .year-divider {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      margin: 2rem 0 0;
+    }
+    .year-divider .yr {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--blue-600);
+      white-space: nowrap;
+    }
+    .year-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--blue-200);
+    }
+
+    /* ════════════════════════════════════════════════════════
+       RESEARCH TAB
+    ════════════════════════════════════════════════════════ */
+    .item-list { display: flex; flex-direction: column; gap: 0.65rem; }
+
+    .item-card {
+      display: block;
+      padding: 1rem 1.2rem;
+      border-radius: 8px;
+      border: 1px solid var(--gray-200);
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.15s;
+      background: #fff;
+    }
+    .item-card:hover {
+      border-color: var(--blue-300);
+      background: var(--blue-50);
+      transform: translateY(-1px);
+      box-shadow: 0 2px 10px rgba(37,99,235,0.08);
+    }
+
+    .item-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .item-card h3 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--gray-800);
+      line-height: 1.45;
+      flex: 1;
+    }
+    .item-card:hover h3 { color: var(--blue-700); }
+
+    .item-year {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--blue-600);
+      white-space: nowrap;
+      margin-top: 0.05rem;
+      flex-shrink: 0;
+    }
+
+    .citation-text {
+      font-size: 0.78rem;
+      color: var(--gray-500);
+      margin-top: 0.35rem;
+      line-height: 1.55;
+    }
+    .citation-text strong { color: var(--gray-700); font-weight: 600; }
+    .citation-text a.doi-link { color: var(--blue-500); text-decoration: none; }
+    .citation-text a.doi-link:hover { text-decoration: underline; }
+
+    .item-badge {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 500;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      background: var(--gray-100);
+      color: var(--gray-500);
+      margin-top: 0.45rem;
+    }
+
+    /* ════════════════════════════════════════════════════════
+       TALKS TAB
+    ════════════════════════════════════════════════════════ */
+    .talk-card-inner { display: flex; gap: 1.1rem; align-items: flex-start; }
+    .talk-card-content { flex: 1; min-width: 0; }
+
+    /* larger 4:3 thumbnail so event photos are clearly visible */
+    .talk-thumb {
+      width: 240px;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: 8px;
+      flex-shrink: 0;
+      border: 1px solid var(--gray-200);
+    }
+
+    .item-meta { font-size: 0.78rem; color: var(--gray-500); margin-top: 0.28rem; }
+
+    /* ════════════════════════════════════════════════════════
+       EXPERIENCE TAB
+    ════════════════════════════════════════════════════════ */
+    .exp-list { display: flex; flex-direction: column; gap: 0; }
+
+    .exp-item {
+      display: flex;
+      gap: 1.25rem;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--gray-100);
+    }
+    .exp-item:last-child { border-bottom: none; }
+
+    .exp-left {
+      min-width: 140px;
+      flex-shrink: 0;
+      padding-top: 0.2rem;
+    }
+
+    .exp-period {
+      font-size: 0.73rem;
+      color: var(--gray-400);
+      line-height: 1.4;
+    }
+
+    .exp-dot-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      padding-top: 0.35rem;
+    }
+
+    .exp-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--blue-400);
+      border: 2px solid var(--blue-200);
+      flex-shrink: 0;
+    }
+
+    .exp-line {
+      width: 2px;
+      flex: 1;
+      background: var(--blue-100);
+      margin-top: 4px;
+    }
+
+    .exp-item:last-child .exp-line { display: none; }
+
+    .exp-body { flex: 1; padding-bottom: 0.25rem; }
+
+    .exp-role {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--gray-800);
+    }
+
+    .exp-org {
+      font-size: 0.82rem;
+      color: var(--blue-600);
+      font-weight: 500;
+      margin-top: 0.1rem;
+    }
+
+    .exp-desc {
+      font-size: 0.8rem;
+      color: var(--gray-500);
+      margin-top: 0.35rem;
+      line-height: 1.55;
+    }
+
+    .exp-super {
+      font-size: 0.73rem;
+      color: var(--gray-400);
+      margin-top: 0.3rem;
+    }
+
+    /* ════════════════════════════════════════════════════════
+       ABOUT TAB
+    ════════════════════════════════════════════════════════ */
+    .about-layout {
+      display: flex;
+      gap: 2.5rem;
+      align-items: flex-start;
+    }
+
+    /* photo box with configurable object-position */
+    .about-photo-wrap {
+      width: 200px;
+      height: 260px;
+      border-radius: 12px;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 3px solid var(--blue-200);
+      box-shadow: 0 4px 20px rgba(37,99,235,0.12);
+    }
+
+    .about-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* object-position set from JS via ABOUT.avatarPosition */
+    }
+
+    /* fallback fills the photo frame when image is missing */
+    .about-photo-fb {
+      width: 100%; height: 100%;
+      background: var(--blue-100);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      color: var(--blue-300);
+      font-size: 4rem;
+    }
+
+    .about-info h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      letter-spacing: -0.02em;
+    }
+
+    .about-title-text {
+      font-size: 0.88rem;
+      color: var(--blue-600);
+      font-weight: 500;
+      margin: 0.2rem 0 0.75rem;
+    }
+
+    .about-bio {
+      font-size: 0.88rem;
+      color: var(--gray-600);
+      line-height: 1.65;
+      margin-bottom: 1.25rem;
+    }
+
+    /* education */
+    .edu-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 0.7rem;
+    }
+
+    .edu-item {
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      background: var(--blue-50);
+      border: 1px solid var(--blue-100);
+    }
+
+    .edu-degree { font-size: 0.88rem; font-weight: 600; color: var(--gray-800); }
+    .edu-inst   { font-size: 0.8rem;  color: var(--blue-600); font-weight: 500; margin-top: 0.1rem; }
+    .edu-year   { font-size: 0.75rem; color: var(--gray-400); margin-top: 0.15rem; }
+
+    /* contact in about */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 0.7rem;
+      margin-top: 1rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.85rem 1rem;
+      background: var(--blue-50);
+      border: 1px solid var(--blue-100);
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--gray-700);
+      transition: all 0.15s;
+    }
+    .contact-item:hover { background: var(--blue-600); color: #fff; border-color: var(--blue-600); }
+    .contact-item i { font-size: 1rem; color: var(--blue-500); width: 18px; text-align: center; }
+    .contact-item:hover i { color: #fff; }
+    /* allow the text column to shrink so long emails wrap instead of overflowing */
+    .contact-item > div { min-width: 0; }
+    .contact-label { display: block; font-size: 0.67rem; color: var(--gray-400); margin-bottom: 0.1rem; }
+    .contact-item:hover .contact-label { color: rgba(255,255,255,0.7); }
+    .contact-value { font-size: 0.82rem; font-weight: 500; overflow-wrap: anywhere; }
+
+    /* ─── FOOTER ───────────────────────────────────────────── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.78rem;
+      color: var(--gray-400);
+      border-top: 1px solid var(--gray-100);
+    }
+
+    /* ─── RESPONSIVE ───────────────────────────────────────── */
+    @media (max-width: 600px) {
+      .home-intro { padding: 1.5rem 1.25rem 0; gap: 1rem; }
+      .home-news-wrap { padding: 1.5rem 1.25rem 3rem; }
+      .news-card { flex-basis: calc(85% - 0.5rem); max-width: calc(85% - 0.5rem); }
+      .page-wrap { padding: 2rem 1.25rem 3rem; }
+      .about-layout { flex-direction: column; align-items: center; }
+      .about-photo-wrap { width: 170px; height: 220px; }
+      .about-info { text-align: center; }
+      .talk-card-inner { flex-direction: column; }
+      .talk-thumb { width: 100%; }
+      .exp-left { min-width: 100px; }
+      .tab-btn { padding: 0 0.75rem; font-size: 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════
+     NAV + TAB BAR (combined)
+══════════════════════════════════════════════════════════ -->
+<nav>
+  <span class="nav-name" onclick="switchTab('home')" role="button" tabindex="0">Hafiz Indra Arwinata</span>
+  <div class="tab-bar" role="tablist">
+    <button class="tab-btn active" data-tab="home"       role="tab">Home</button>
+    <button class="tab-btn"        data-tab="research"   role="tab">Research</button>
+    <button class="tab-btn"        data-tab="talks"      role="tab">Talks</button>
+    <button class="tab-btn"        data-tab="experience" role="tab">Experience</button>
+    <button class="tab-btn"        data-tab="about"      role="tab">About</button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════
+     HOME TAB
+══════════════════════════════════════════════════════════ -->
+<div class="tab-pane active" id="tab-home">
+
+  <!-- brief intro -->
+  <div class="home-intro">
+    <img class="home-avatar" id="homeAvatar" src="" alt="Hafiz Indra Arwinata"
+         onerror="this.style.display='none';document.getElementById('homeAvatarFb').style.display='flex';">
+    <div class="home-avatar-fb" id="homeAvatarFb"><i class="fa-solid fa-user-astronaut"></i></div>
+    <div class="home-intro-text">
+      <h1 id="homeName"></h1>
+      <p class="home-title" id="homeTitle"></p>
+      <div class="social-links" id="homeLinks"></div>
+    </div>
+  </div>
+
+  <!-- news -->
+  <div class="home-news-wrap">
+    <h2 class="section-title">
+      <i class="fa-solid fa-newspaper ti"></i> Recent Updates
+    </h2>
+    <div id="newsContainer"></div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     RESEARCH TAB
+══════════════════════════════════════════════════════════ -->
+<div class="tab-pane" id="tab-research">
+  <div class="page-wrap">
+    <h2 class="section-title"><i class="fa-solid fa-flask ti"></i> Research &amp; Publications</h2>
+    <div class="item-list" id="publicationList"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     TALKS TAB
+══════════════════════════════════════════════════════════ -->
+<div class="tab-pane" id="tab-talks">
+  <div class="page-wrap">
+    <h2 class="section-title"><i class="fa-solid fa-person-chalkboard ti"></i> Talks &amp; Presentations</h2>
+    <div class="item-list" id="talkList"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     EXPERIENCE TAB
+══════════════════════════════════════════════════════════ -->
+<div class="tab-pane" id="tab-experience">
+  <div class="page-wrap">
+    <h2 class="section-title"><i class="fa-solid fa-briefcase ti"></i> Experience</h2>
+    <div class="exp-list" id="expList"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     ABOUT TAB
+══════════════════════════════════════════════════════════ -->
+<div class="tab-pane" id="tab-about">
+  <div class="page-wrap">
+
+    <!-- photo + bio (compact top row) -->
+    <div class="about-layout" style="margin-bottom:2.5rem;">
+      <div class="about-photo-wrap">
+        <img id="aboutPhoto" src="" alt="Hafiz Indra Arwinata"
+             onerror="this.style.display='none';document.getElementById('aboutPhotoFb').style.display='flex';">
+        <div class="about-photo-fb" id="aboutPhotoFb"><i class="fa-solid fa-user-astronaut"></i></div>
+      </div>
+      <div class="about-info">
+        <h1 id="aboutName"></h1>
+        <p class="about-title-text" id="aboutTitle"></p>
+        <p class="about-bio" id="aboutBio"></p>
+        <div class="social-links" id="aboutLinks"></div>
+      </div>
+    </div>
+
+    <!-- education (full width) -->
+    <h3 class="section-title" style="font-size:1rem;">
+      <i class="fa-solid fa-graduation-cap ti"></i> Education
+    </h3>
+    <div class="edu-list" id="eduList" style="margin-bottom:2.5rem;"></div>
+
+    <!-- contact (full width) -->
+    <h3 class="section-title" style="font-size:1rem;">
+      <i class="fa-solid fa-envelope ti"></i> Contact
+    </h3>
+    <div class="contact-grid" id="contactGrid"></div>
+
+  </div>
+</div>
+
+<footer>
+  <p>&copy; <span id="footerYear"></span> Hafiz Indra Arwinata &middot; Astronomy Study Program, Institut Teknologi Bandung</p>
+</footer>
+
+<script>
+/* ╔═══════════════════════════════════════════════════════════════╗
+   ║  ✏️  EDIT CONTENT HERE — semua data ada di bawah ini        ║
+   ╚═══════════════════════════════════════════════════════════════╝ */
+
+/* ── CONFIG ─────────────────────────────────────────────────────
+   Nama belakangmu untuk ditebalkan otomatis di daftar author     */
+const AUTHOR_LAST_NAME = "Arwinata";
+
+/* ── ABOUT ──────────────────────────────────────────────────────
+   avatarPosition: atur posisi foto agar wajah terlihat pas.
+   Format: "X% Y%" atau keyword seperti "center top", "50% 20%"
+   - Geser ke atas  → turunkan angka Y, misal "50% 10%"
+   - Geser ke bawah → naikkan angka Y, misal "50% 70%"
+   - Geser ke kiri  → turunkan angka X, misal "30% 20%"
+   - Geser ke kanan → naikkan angka X, misal "70% 20%"            */
+const ABOUT = {
+  name:           "Hafiz Indra Arwinata",
+  title:          "Master Student in Astronomy · Institut Teknologi Bandung",
+  bio:            "Aspiring astrophysicist working on gravitational lensing and galaxies. I enjoy collaborating with scientists, participating in conferences, and exploring ideas at the boundary of observational astronomy. Outside of research, I like travelling, watching anime, and reading manga.",
+  avatar:         "images/foto diri.jpg",   // path ke foto
+  avatarPosition: "center 15%",            // ← sesuaikan posisi foto di sini
+
+  education: [
+    {
+      degree:      "M.Sc. in Astronomy",
+      institution: "Institut Teknologi Bandung",
+      year:        "2024 – present",
+      note:        "Expected 2026",
+    },
+    {
+      degree:      "B.Sc. in Astronomy",
+      institution: "Institut Teknologi Bandung",
+      year:        "2020 – 2024",
+    },
+  ],
+
+  links: [
+    { label: "Scholar", icon: "fa-solid fa-graduation-cap", url: "https://scholar.google.com/citations?user=REAgI8cAAAAJ&hl=id" },
+    { label: "ORCID",   icon: "fa-brands fa-orcid",         url: "https://orcid.org/0009-0000-8595-1603" },
+    { label: "Scopus",  icon: "fa-solid fa-book-open",      url: "https://www.scopus.com/authid/detail.uri?authorId=59197730700&origin=recordpage" },
+    { label: "GitHub",  icon: "fa-brands fa-github",        url: "https://github.com/hafizia" },
+  ],
+};
+
+/* ── NEWS ───────────────────────────────────────────────────────
+   Tambah berita terbaru di PALING ATAS.
+   type : "paper" | "talk" | "award" | "other"
+   image: path ke foto/gambar — tampil besar di card (opsional)
+   url  : link langsung, atau "" kalau tidak ada                  */
+const NEWS = [
+  {
+    type:  "talk",
+    title: "Presented at ICSSF 2024: Astronomical Alignments at Pugung Raharjo Archaeological Park",
+    date:  "September 2024",
+    url:   "",
+    image: "images/icssf.jpg",
+  },
+  {
+    type:  "paper",
+    title: "New paper: Atmospheric Extinction Coefficients and Night Sky Brightness at Bosscha Observatory",
+    date:  "June 2024",
+    url:   "https://doi.org/10.1088/1742-6596/2773/1/012003",
+  },
+  {
+    type:  "paper",
+    title: "New paper: Membership Study of Open Cluster NGC 6134 using HDBSCAN Clustering Algorithm",
+    date:  "June 2024",
+    url:   "https://doi.org/10.1088/1742-6596/2773/1/012004",
+  },
+  {
+    type:  "paper",
+    title: "New paper: Night Sky Brightness at ITB-Undana Remote Telescope Site",
+    date:  "June 2024",
+    url:   "https://doi.org/10.1088/1742-6596/2773/1/012005",
+  },
+];
+
+/* ── PUBLICATIONS ───────────────────────────────────────────────
+   Paste BibTeX langsung dari Google Scholar / Zotero / Mendeley.
+   Tambah paper terbaru di PALING ATAS.                           */
+const PUBLICATIONS = [
+  {
+    bibtex: `@inproceedings{yusuf2024bosscha,
+  author    = {Yusuf, Muhammad and Arwinata, Hafiz Indra and Perhati, Tubagus and Satya, Leksa and Jatmiko, Andreas Tri Prakoso and Ramadhan, Dicky Gregorius and Ramadhan, Shofia},
+  title     = {Atmospheric extinction coefficients and night sky brightness at Bosscha Observatory},
+  booktitle = {Journal of Physics: Conference Series},
+  year      = {2024},
+  volume    = {2773},
+  number    = {1},
+  pages     = {012003},
+  publisher = {IOP Publishing},
+  doi       = {10.1088/1742-6596/2773/1/012003}
+}`,
+  },
+  {
+    bibtex: `@inproceedings{yusuf2024ngc6134,
+  author    = {Yusuf, Muhammad and Ramadhan, Dicky Gregorius and Jatmiko, Andreas Tri Prakoso and Perhati, Tubagus and Ramadhan, Shofia and Arwinata, Hafiz Indra and Premadi, Premana Wardayanti},
+  title     = {Membership Study of Open Cluster {NGC} 6134 using {HDBSCAN} Clustering Algorithm},
+  booktitle = {Journal of Physics: Conference Series},
+  year      = {2024},
+  volume    = {2773},
+  number    = {1},
+  pages     = {012004},
+  publisher = {IOP Publishing},
+  doi       = {10.1088/1742-6596/2773/1/012004}
+}`,
+  },
+  {
+    bibtex: `@inproceedings{yusuf2024undana,
+  author    = {Yusuf, Muhammad and Yap, Fiona and Ramadhan, Shofia and Jatmiko, Andreas Tri Prakoso and Ramadhan, Dicky Gregorius and Perhati, Tubagus and Arwinata, Hafiz Indra and Putra, Mantovani},
+  title     = {Atmospheric extinction coefficients and night sky brightness at {ITB}-{Undana} remote telescope site},
+  booktitle = {Journal of Physics: Conference Series},
+  year      = {2024},
+  volume    = {2773},
+  number    = {1},
+  pages     = {012005},
+  publisher = {IOP Publishing},
+  doi       = {10.1088/1742-6596/2773/1/012005}
+}`,
+  },
+];
+
+/* ── TALKS ──────────────────────────────────────────────────────
+   Tambah talk terbaru di PALING ATAS.
+   image: foto dari event — tampil sebagai thumbnail (opsional)   */
+const TALKS = [
+  {
+    title:    "An Analysis of Astronomical Alignments at Pugung Raharjo Archaeological Park",
+    type:     "Conference Proceedings Talk",
+    venue:    "1st International Conference on Sustainability in Sciences for the Future (ICSSF)",
+    location: "Institut Teknologi Sumatera (ITERA), Lampung, Indonesia",
+    date:     "September 26, 2024",
+    url:      "",
+    image:    "images/icssf.jpg",
+  },
+];
+
+/* ── EXPERIENCE ─────────────────────────────────────────────────
+   Tambah pengalaman terbaru di PALING ATAS.
+   supervisor: opsional, bisa dihapus kalau tidak relevan         */
+const EXPERIENCE = [
+  {
+    period:       "Jan – Dec 2024",
+    role:         "Course Assistant",
+    organization: "Astronomy Study Program, ITB",
+    description:  "Guided students in practical astronomical observations and telescope operation. Assisted with grading and provided academic support throughout the semester.",
+    supervisor:   "Anton Timur Jaelani & Yayan Sugianto",
+  },
+  {
+    period:       "Jan 2023 – Dec 2024",
+    role:         "Technical Team",
+    organization: "Tim Pembina Olimpiade Astronomi (TPOA)",
+    description:  "Maintenance of astronomical instruments (telescopes, CCD cameras); assistant jury for the national astronomy olympiad (OSN); training instructor for the IOAA observation round.",
+    supervisor:   "Evan Irawan Akbar",
+  },
+  {
+    period:       "May 2023 – Nov 2024",
+    role:         "Astronomy Educator",
+    organization: "Bosscha Observatory, ITB",
+    description:  "Educated the public about astronomy; guided visitors in observing celestial objects (Sun, stars, Moon) through telescopes.",
+    supervisor:   "Ajeng Tri Handini",
+  },
+  {
+    period:       "May – Oct 2023",
+    role:         "Research Team",
+    organization: "Bosscha Observatory, ITB",
+    description:  "Photometric observations of open clusters and standard stars; photometric data reduction and analysis; scientific writing.",
+    supervisor:   "Muhammad Yusuf",
+  },
+];
+
+/* ── CONTACT ─────────────────────────────────────────────────── */
+const CONTACT = [
+  { icon: "fa-solid fa-envelope",       label: "Email",          value: "20324002@mahasiswa.itb.ac.id", url: "mailto:20324002@mahasiswa.itb.ac.id" },
+  { icon: "fa-solid fa-graduation-cap", label: "Google Scholar", value: "View profile",                url: "https://scholar.google.com/citations?user=REAgI8cAAAAJ&hl=id" },
+  { icon: "fa-brands fa-orcid",         label: "ORCID",          value: "0009-0000-8595-1603",         url: "https://orcid.org/0009-0000-8595-1603" },
+  { icon: "fa-solid fa-book-open",      label: "Scopus",         value: "Author profile",              url: "https://www.scopus.com/authid/detail.uri?authorId=59197730700&origin=recordpage" },
+  { icon: "fa-brands fa-github",        label: "GitHub",         value: "hafizia",                     url: "https://github.com/hafizia" },
+];
+
+
+/* ╔═══════════════════════════════════════════════════════════════╗
+   ║  ⚙️  ENGINE — tidak perlu diedit di bawah ini               ║
+   ╚═══════════════════════════════════════════════════════════════╝ */
+
+/* ── Tab switching ─────────────────────────────────────────── */
+function switchTab(name) {
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  const pane = document.getElementById('tab-' + name);
+  const btn  = document.querySelector(`.tab-btn[data-tab="${name}"]`);
+  if (pane) pane.classList.add('active');
+  if (btn)  btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'instant' });
+}
+
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+});
+
+/* ── BibTeX parser ─────────────────────────────────────────── */
+function parseBibtex(raw) {
+  raw = raw.replace(/\r\n/g, '\n').trim();
+  const hdr = raw.match(/^@(\w+)\s*\{\s*([^,\s]+)\s*,/);
+  if (!hdr) return null;
+  const fields = { _type: hdr[1].toLowerCase(), _key: hdr[2].trim() };
+  let i = raw.indexOf(',') + 1;
+  while (i < raw.length) {
+    while (i < raw.length && /[\s,]/.test(raw[i])) i++;
+    if (raw[i] === '}' || i >= raw.length) break;
+    const ns = i;
+    while (i < raw.length && raw[i] !== '=' && raw[i] !== '}') i++;
+    const fn = raw.slice(ns, i).trim().toLowerCase();
+    if (!fn || raw[i] === '}') break;
+    i++;
+    while (i < raw.length && /\s/.test(raw[i])) i++;
+    let value = '';
+    if (raw[i] === '{') {
+      let depth = 0; i++;
+      const s = i;
+      while (i < raw.length) {
+        if (raw[i] === '{') depth++;
+        else if (raw[i] === '}') { if (depth === 0) { value = raw.slice(s, i); i++; break; } depth--; }
+        i++;
+      }
+    } else if (raw[i] === '"') {
+      i++;
+      const s = i;
+      while (i < raw.length && raw[i] !== '"') i++;
+      value = raw.slice(s, i); i++;
+    } else {
+      const s = i;
+      while (i < raw.length && !/[,}]/.test(raw[i])) i++;
+      value = raw.slice(s, i).trim();
+    }
+    if (fn) fields[fn] = value;
+  }
+  return fields;
+}
+
+function cleanLatex(s) {
+  if (!s) return '';
+  return s
+    .replace(/\{\\['"^`~=.uvcHbdrtoq]\s*([a-zA-Z])\}/g, '$1')
+    .replace(/\\['"^`~=.uvcHbdrtoq]\{([a-zA-Z])\}/g, '$1')
+    .replace(/\{([^{}]*)\}/g, '$1')
+    .replace(/\{([^{}]*)\}/g, '$1')
+    .replace(/\\textit\{([^}]*)\}/g, '$1')
+    .replace(/\\emph\{([^}]*)\}/g, '$1')
+    .replace(/\\textbf\{([^}]*)\}/g, '$1')
+    .replace(/--/g, '–')
+    .replace(/\\[a-zA-Z]+\s*/g, '')
+    .trim();
+}
+
+function fmtAuthor(token, boldLast) {
+  const parts = token.split(',').map(p => p.trim());
+  let last, initials;
+  if (parts.length >= 2) {
+    last = parts[0];
+    initials = parts[1].split(/\s+/).filter(Boolean).map(n => n.charAt(0).toUpperCase() + '.').join(' ');
+  } else {
+    const words = token.trim().split(/\s+/);
+    last = words[words.length - 1];
+    initials = words.slice(0, -1).map(n => n.charAt(0).toUpperCase() + '.').join(' ');
+  }
+  const d = initials ? `${last}, ${initials}` : last;
+  return (boldLast && last.toLowerCase() === boldLast.toLowerCase()) ? `<strong>${d}</strong>` : d;
+}
+
+function formatAuthors(str, boldLast) {
+  if (!str) return '';
+  const tokens = str.split(/\s+and\s+/i).map(a => a.trim()).filter(Boolean);
+  const fmt = tokens.map(t => fmtAuthor(t, boldLast));
+  if (fmt.length === 1) return fmt[0];
+  if (fmt.length === 2) return fmt.join(' &amp; ');
+  return fmt.slice(0, -1).join(', ') + ', &amp; ' + fmt[fmt.length - 1];
+}
+
+function entryLabel(type) {
+  return ({ article:'Journal Article', inproceedings:'Conference Paper', proceedings:'Conference Paper',
+    misc:'Preprint', preprint:'Preprint', phdthesis:'PhD Thesis', mastersthesis:"Master's Thesis",
+    book:'Book', techreport:'Technical Report' })[type] || 'Publication';
+}
+
+function formatCitation(f) {
+  const authors = formatAuthors(f.author || '', AUTHOR_LAST_NAME);
+  const year    = cleanLatex(f.year || '');
+  const title   = cleanLatex(f.title || '');
+  const t       = f._type;
+  let venue = '';
+  if (t === 'article') {
+    venue = `<em>${cleanLatex(f.journal||'')}</em>`;
+    if (f.volume) venue += `,&nbsp;${cleanLatex(f.volume)}`;
+    if (f.number) venue += `(${cleanLatex(f.number)})`;
+    if (f.pages)  venue += `,&nbsp;pp.&nbsp;${cleanLatex(f.pages)}`;
+    if (f.publisher) venue += `.&nbsp;${cleanLatex(f.publisher)}`;
+  } else if (['inproceedings','proceedings'].includes(t)) {
+    venue = `In <em>${cleanLatex(f.booktitle||'')}</em>`;
+    if (f.volume)    venue += `,&nbsp;Vol.&nbsp;${cleanLatex(f.volume)}`;
+    if (f.number)    venue += `,&nbsp;No.&nbsp;${cleanLatex(f.number)}`;
+    if (f.pages)     venue += `,&nbsp;p.&nbsp;${cleanLatex(f.pages)}`;
+    if (f.publisher) venue += `.&nbsp;${cleanLatex(f.publisher)}`;
+  } else if (t === 'phdthesis') {
+    venue = `PhD thesis, <em>${cleanLatex(f.school||'')}</em>`;
+  } else if (t === 'mastersthesis') {
+    venue = `Master's thesis, <em>${cleanLatex(f.school||'')}</em>`;
+  } else {
+    venue = cleanLatex(f.howpublished || f.journal || f.booktitle || '');
+  }
+  const doiUrl  = f.doi ? `https://doi.org/${f.doi}` : (f.url || '');
+  const doiText = f.doi ? `doi:${f.doi}` : (f.url ? 'link' : '');
+  const doiHtml = doiUrl ? `&nbsp;<a class="doi-link" href="${doiUrl}" target="_blank" rel="noopener">${doiText}</a>` : '';
+  return `${authors} (${year}). ${title}. ${venue}.${doiHtml}`;
+}
+
+/* ── Render helpers ────────────────────────────────────────── */
+function mkEl(tag, props = {}) {
+  return Object.assign(document.createElement(tag), props);
+}
+
+function appendLinks(container, links) {
+  links.forEach(l => {
+    const a = mkEl('a', { className:'social-link', href:l.url, target:'_blank', rel:'noopener',
+      innerHTML:`<i class="${l.icon}"></i> ${l.label}` });
+    container.appendChild(a);
+  });
+}
+
+/* ── HOME: intro ───────────────────────────────────────────── */
+document.getElementById('homeName').textContent  = ABOUT.name;
+document.getElementById('homeTitle').textContent = ABOUT.title;
+document.getElementById('homeAvatar').src        = ABOUT.avatar;
+appendLinks(document.getElementById('homeLinks'), ABOUT.links);
+
+/* ── HOME: news (grouped by year) ──────────────────────────── */
+const newsContainer = document.getElementById('newsContainer');
+const grouped = {};
+NEWS.forEach(item => {
+  const yr = (item.date.match(/\d{4}/) || ['Other'])[0];
+  (grouped[yr] = grouped[yr] || []).push(item);
+});
+const years = Object.keys(grouped).sort((a, b) => Number(b) - Number(a));
+
+years.forEach(yr => {
+  // year divider
+  const divider = mkEl('div', { className: 'year-divider' });
+  divider.innerHTML = `<span class="yr">${yr}</span>`;
+  newsContainer.appendChild(divider);
+
+  const wrap = mkEl('div', { className: 'year-row-wrap' });
+  const row  = mkEl('div', { className: 'year-row' });
+
+  grouped[yr].forEach(item => {
+    const card = mkEl('div', { className: 'news-card' + (item.url ? ' has-link' : '') });
+
+    if (item.image) {
+      const img = mkEl('img', { className:'news-img', src: item.image, alt: item.title, loading:'lazy' });
+      img.onerror = () => {
+        img.style.display = 'none';
+        card.insertBefore(
+          mkEl('div', { className:'news-img-placeholder', innerHTML:'<i class="fa-solid fa-image"></i>' }),
+          card.firstChild
+        );
+      };
+      card.appendChild(img);
+    } else {
+      const icon = { paper:'file-lines', talk:'person-chalkboard', award:'star', other:'star' }[item.type] || 'star';
+      card.appendChild(mkEl('div', { className:'news-img-placeholder',
+        innerHTML:`<i class="fa-solid fa-${icon}"></i>` }));
+    }
+
+    const body = mkEl('div', { className:'news-body' });
+    body.innerHTML = `
+      <span class="news-tag ${item.type}">${item.type.toUpperCase()}</span>
+      <h3>${item.title}</h3>
+      <p class="news-date">${item.date}</p>`;
+    card.appendChild(body);
+
+    if (item.url) card.addEventListener('click', () => window.open(item.url, '_blank', 'noopener'));
+    row.appendChild(card);
+  });
+
+  // mouse-drag scroll (desktop)
+  let dragging = false, startX = 0, scrollStart = 0;
+  row.addEventListener('mousedown', e => {
+    dragging = true; startX = e.pageX; scrollStart = row.scrollLeft;
+    row.classList.add('dragging');
+  });
+  window.addEventListener('mouseup',   () => { dragging = false; row.classList.remove('dragging'); });
+  row.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    e.preventDefault();
+    row.scrollLeft = scrollStart - (e.pageX - startX);
+  });
+  // prevent click-through after drag
+  row.addEventListener('click', e => { if (Math.abs(row.scrollLeft - scrollStart) > 5) e.stopPropagation(); }, true);
+
+  wrap.appendChild(row);
+
+  // prev / next buttons
+  const controls = mkEl('div', { className: 'row-controls' });
+  const prevBtn  = mkEl('button', { className:'c-btn', innerHTML:'<i class="fa-solid fa-chevron-left"></i>' });
+  const nextBtn  = mkEl('button', { className:'c-btn', innerHTML:'<i class="fa-solid fa-chevron-right"></i>' });
+
+  function cardStep() {
+    const c = row.querySelector('.news-card');
+    return c ? c.getBoundingClientRect().width + 16 : 300;
+  }
+  prevBtn.addEventListener('click', () => row.scrollBy({ left: -cardStep(), behavior: 'smooth' }));
+  nextBtn.addEventListener('click', () => row.scrollBy({ left:  cardStep(), behavior: 'smooth' }));
+
+  controls.appendChild(prevBtn);
+  controls.appendChild(nextBtn);
+  wrap.appendChild(controls);
+
+  newsContainer.appendChild(wrap);
+});
+
+/* ── RESEARCH: publications ─────────────────────────────────── */
+PUBLICATIONS.forEach(pub => {
+  const f = parseBibtex(pub.bibtex);
+  if (!f) return;
+  const url = f.doi ? `https://doi.org/${f.doi}` : (f.url || '');
+  const a = mkEl('a', { className:'item-card', href: url || '#', target:'_blank', rel:'noopener' });
+  if (!url) { a.removeAttribute('target'); a.removeAttribute('rel'); }
+  a.innerHTML = `
+    <div class="item-card-top">
+      <h3>${cleanLatex(f.title||'')}</h3>
+      <span class="item-year">${cleanLatex(f.year||'')}</span>
+    </div>
+    <p class="citation-text">${formatCitation(f)}</p>
+    <span class="item-badge">${pub.category || entryLabel(f._type)}</span>`;
+  document.getElementById('publicationList').appendChild(a);
+});
+
+/* ── TALKS ──────────────────────────────────────────────────── */
+TALKS.forEach(t => {
+  const el = t.url ? mkEl('a', { href:t.url, target:'_blank', rel:'noopener' }) : mkEl('div');
+  el.className = 'item-card';
+  const thumb = t.image
+    ? `<img class="talk-thumb" src="${t.image}" alt="${t.title}" loading="lazy" onerror="this.style.display='none'">`
+    : '';
+  el.innerHTML = `
+    <div class="talk-card-inner">
+      <div class="talk-card-content">
+        <div class="item-card-top">
+          <h3>${t.title}</h3>
+          <span class="item-year">${(t.date.match(/\d{4}/)||[''])[0]}</span>
+        </div>
+        <p class="item-meta">${t.type} &middot; ${t.venue}</p>
+        <p class="item-meta">${t.location} &middot; ${t.date}</p>
+      </div>
+      ${thumb}
+    </div>`;
+  document.getElementById('talkList').appendChild(el);
+});
+
+/* ── EXPERIENCE ─────────────────────────────────────────────── */
+EXPERIENCE.forEach(e => {
+  const item = mkEl('div', { className:'exp-item' });
+  item.innerHTML = `
+    <div class="exp-left">
+      <p class="exp-period">${e.period}</p>
+    </div>
+    <div class="exp-dot-col">
+      <div class="exp-dot"></div>
+      <div class="exp-line"></div>
+    </div>
+    <div class="exp-body">
+      <p class="exp-role">${e.role}</p>
+      <p class="exp-org">${e.organization}</p>
+      <p class="exp-desc">${e.description}</p>
+      ${e.supervisor ? `<p class="exp-super">Supervisor: ${e.supervisor}</p>` : ''}
+    </div>`;
+  document.getElementById('expList').appendChild(item);
+});
+
+/* ── ABOUT ──────────────────────────────────────────────────── */
+document.getElementById('aboutName').textContent  = ABOUT.name;
+document.getElementById('aboutTitle').textContent = ABOUT.title;
+document.getElementById('aboutBio').textContent   = ABOUT.bio;
+const aboutPhoto = document.getElementById('aboutPhoto');
+aboutPhoto.src = ABOUT.avatar;
+aboutPhoto.style.objectPosition = ABOUT.avatarPosition;
+appendLinks(document.getElementById('aboutLinks'), ABOUT.links);
+
+ABOUT.education.forEach(e => {
+  const div = mkEl('div', { className:'edu-item' });
+  div.innerHTML = `
+    <p class="edu-degree">${e.degree}</p>
+    <p class="edu-inst">${e.institution}</p>
+    <p class="edu-year">${e.year}${e.note ? ' · ' + e.note : ''}</p>`;
+  document.getElementById('eduList').appendChild(div);
+});
+
+/* ── CONTACT ────────────────────────────────────────────────── */
+CONTACT.forEach(c => {
+  const a = mkEl('a', { className:'contact-item', href:c.url,
+    target: c.url.startsWith('mailto') ? '_self' : '_blank', rel:'noopener' });
+  a.innerHTML = `
+    <i class="${c.icon}"></i>
+    <div>
+      <span class="contact-label">${c.label}</span>
+      <span class="contact-value">${c.value}</span>
+    </div>`;
+  document.getElementById('contactGrid').appendChild(a);
+});
+
+/* footer year */
+document.getElementById('footerYear').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
